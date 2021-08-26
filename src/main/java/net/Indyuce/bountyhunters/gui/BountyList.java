@@ -160,6 +160,7 @@ public class BountyList extends PluginInventory {
 
 				Bounty bounty = BountyHunters.getInstance().getBountyManager().getBounty(UUID.fromString(tag));
 				OfflinePlayer target = bounty.getTarget();
+				Player targetPlayer = target.getPlayer();
 
 				if (bounty.hasHunter(player)) {
 					bounty.removeHunter(player);
@@ -167,7 +168,7 @@ public class BountyList extends PluginInventory {
 				} else {
 
 					// permission check
-					if (player.hasPermission("bountyhunters.untargetable") && !player.hasPermission("bountyhunters.untargetable.bypass")) {
+					if (targetPlayer.hasPermission("bountyhunters.untargetable") && !player.hasPermission("bountyhunters.untargetable.bypass")) {
 						Message.TRACK_IMUN.format().send(player);
 						return;
 					}

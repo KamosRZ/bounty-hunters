@@ -27,7 +27,9 @@ public class BountyCommands {
 			if (bounty.hasCreator())
 				command = command.replace("{creator}", bounty.getCreator().getName());
 			String reward = Integer.toString((int) bounty.getReward());
-			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), BountyHunters.getInstance().getPlaceholderParser().parse(null, command.replace("{target}", bounty.getTarget().getName()).replace("{player}", sender.getName()).replace("{reward}", reward) ));
+			String modified = Integer.toString((int) bounty.getReward()*2);
+			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), BountyHunters.getInstance().getPlaceholderParser().parse(null, command.replace("{target}", bounty.getTarget().getName()).replace("{player}", sender.getName())
+					.replace("{reward}", reward).replace("{modifiedR}", modified) ));
 		}
 	}
 
